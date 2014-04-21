@@ -51,13 +51,10 @@ public class WalletPatcher implements IXposedHookLoadPackage {
 					classLoader, "buildUserAgentString", String.class, int.class, String.class, String.class, String.class, String.class, String.class, useragentprinter);
 */
 
-
-
-			XposedHelpers.findAndHookMethod("com.google.android.apps.wallet.util.DeviceCapabilityManagerImpl",
+			XposedHelpers.findAndHookMethod("com.google.android.apps.wallet.device.devicecapabilities.DeviceCapabilityManager",
 					classLoader, "checkWhitelistEntries", String.class, String[].class, truereplacer);
 
-
-  			XposedHelpers.findAndHookMethod("com.google.android.apps.wallet.datamanager.local.UserInfoManagerImpl",
+  			XposedHelpers.findAndHookMethod("com.google.android.apps.wallet.datamanager.local.UserInfoManager",
 					classLoader, "isWalletAllowedForUserInCountry", truereplacer);
 			
 			XposedHelpers.findAndHookMethod("com.google.android.apps.wallet.security.EnvironmentProperty$1",
@@ -65,6 +62,12 @@ public class WalletPatcher implements IXposedHookLoadPackage {
 					falsereplacer);
 			
 /*
+			XposedHelpers.findAndHookMethod("com.google.android.apps.wallet.datamanager.local.UserInfoManagerImpl",
+					classLoader, "isWalletAllowedForUserInCountry", truereplacer);
+
+			XposedHelpers.findAndHookMethod("com.google.android.apps.wallet.util.DeviceCapabilityManagerImpl",
+					classLoader, "checkWhitelistEntries", String.class, String[].class, truereplacer);
+
 			XposedHelpers.findAndHookMethod("com.google.android.apps.wallet.util.DeviceCapabilityManagerImpl",
 					classLoader, "isWhitelisted", truereplacer);
 			
